@@ -1,0 +1,83 @@
+Select A1.Appl_id,A1.Appl_Name,A2.Grade,A2.Cour_ID,A2.Sec_dept,A2.Sec_alp,A2.Sec_Batch From Apply_for A2 JOIN Applicants A1 ON A2.Appl_id = A1.Appl_id
+Select count(*) as COUNT_T from hire group by Appl_id having Appl_id =  TA_ID
+Select A1.Appl_id,A1.Appl_Name,A2.Grade,A2.Cour_ID,A2.Sec_dept,A2.Sec_alp,A2.Sec_Batch From Apply_for A2 JOIN Applicants A1 ON A2.Appl_id = A1.Appl_id
+Select count(*) as COUNT_T from hire group by Appl_id having Appl_id =TA_ID;
+
+
+SELECT A1.Appl_ID from Apply_for A1, Teaches_Course T1 where A1.Cour_ID=T1.Cour_id and A1.Sec_alp=T1.Sec_alp and A1.Sec_Batch=T1.Sec_Batch and A1.Sec_dept=T1.Sec_dept and A1.Start_Time=T1.Start_time and A1.End_Time=T1.End_time and A1.Appl_ID=TA_ID nd T1.Fac_ID=Fac_ID;
+UPDATE Applicants SET Appl_hire_status = 1,   Appl_LD = 1 WHERE Appl_ID =  TA_ID
+
+
+SELECT  F.Fac_Name,  F.Fac_id ,  F.Fac_contact ,  F.Fac_Email ,  TC.Cour_id ,  TC.Sec_dept ,  TC.Sec_Batch ,  TC.Sec_alp ,  TC.Start_time,  TC.End_time FROM    Applicants A JOIN  Hire H ON A.Appl_ID = H.Appl_ID and H.LD=1 JOIN  Teaches_Course TC ON H.Fac_ID = TC.Fac_ID JOIN  Apply_for AF ON A.Appl_ID = AF.Appl_ID AND TC.Cour_id = AF.Cour_ID AND TC.Sec_alp=AF.Sec_alp AND TC.Sec_Batch=AF.Sec_Batch AND TC.Sec_dept = AF.Sec_dept JOIN FACULTY F ON F.Fac_id=TC.Fac_ID WHERE  A.Appl_ID =" + Session["LDReport"];
+
+SELECT A1.Appl_ID,A1.Appl_Name,A1.Appl_Contact,A1.Appl_Email,A2.Cour_ID,A2.Cour_ID,A2.Sec_dept,A2.Sec_Batch,A2.Sec_alp FROM APPLICANTS A1 JOIN APPLY_FOR A2 ON A1.Appl_ID=A2.Appl_ID AND A1.Appl_LD=1 AND A1.Appl_ID IN(SELECT APPL_ID FROM HIRE GROUP BY Appl_ID)
+
+
+SELECT A1.Appl_ID,A1.Appl_Name,A1.Appl_Contact,A1.Appl_Email,A2.Cour_ID,A2.Cour_ID,A2.Sec_dept,A2.Sec_Batch,A2.Sec_alp FROM APPLICANTS A1 JOIN APPLY_FOR A2 ON A1.Appl_ID=A2.Appl_ID  AND A1.Appl_ID=" + Session["PayID"]+ " and A1.Appl_hire_status =1";
+
+SELECT A1.Appl_ID,A1.Appl_Name,A1.Appl_Contact,A1.Appl_Email,A2.Cour_ID,A2.Cour_ID,A2.Sec_dept,A2.Sec_Batch,A2.Sec_alp FROM APPLICANTS A1 JOIN APPLY_FOR A2 ON A1.Appl_ID=A2.Appl_ID  AND A1.Appl_ID IN(SELECT distinct APPL_ID FROM HIRE GROUP BY Appl_ID)
+
+
+SELECT  F.Fac_Name,  F.Fac_id ,  F.Fac_contact ,  F.Fac_Email ,  TC.Cour_id ,  TC.Sec_dept ,  TC.Sec_Batch ,  TC.Sec_alp ,  TC.Start_time,  TC.End_time FROM    Applicants A JOIN  Hire H ON A.Appl_ID = H.Appl_ID and H.TA=1 JOIN  Teaches_Course TC ON H.Fac_ID = TC.Fac_ID JOIN  Apply_for AF ON A.Appl_ID = AF.Appl_ID AND TC.Cour_id = AF.Cour_ID AND TC.Sec_alp=AF.Sec_alp AND TC.Sec_Batch=AF.Sec_Batch AND TC.Sec_dept = AF.Sec_dept JOIN FACULTY F ON F.Fac_id=TC.Fac_ID WHERE  A.Appl_ID =" + Session["TAReport"]
+
+
+SELECT A1.Appl_ID,A1.Appl_Name,A1.Appl_Contact,A1.Appl_Email,A2.Cour_ID,A2.Cour_ID,A2.Sec_dept,A2.Sec_Batch,A2.Sec_alp FROM APPLICANTS A1 JOIN APPLY_FOR A2 ON A1.Appl_ID=A2.Appl_ID AND A1.Appl_TA=1 AND A1.Appl_ID IN(SELECT APPL_ID FROM HIRE GROUP BY Appl_ID)
+
+
+Select A1.Appl_id,A1.Appl_Name,A2.Grade,A2.Cour_ID,A2.Sec_dept,A2.Sec_alp,A2.Sec_Batch From Apply_for A2 JOIN Applicants A1 ON A2.Appl_id = A1.Appl_id
+
+DELETE FROM Hire WHERE Appl_ID =" + Appl_id + " AND Fac_ID = Fac_id and LD= 1
+
+
+UPDATE Applicants SET Appl_hire_status = 0, Appl_LD = 0 WHERE Appl_ID = Appl_id;
+
+UPDATE Applicants SET Appl_LD = 0 WHERE Appl_ID = Appl_id
+
+SELECT A1.Assig_id,A1.Assig_Title,A1.Complete_Status,A1.Due_time,A1.Due_Date,A1.Cour_id FROM Assignment A1 JOIN Assigns A2 ON A1.Assig_ID=A2.Assig_ID AND A2.Appl_ID= Session["APPLICANT_ID"]  AND A2.Fac_ID= Fac_id  AND A1.Complete_Status =0
+
+SELECT A1.Assig_id,A1.Assig_Title,A1.Complete_Status,A1.Due_time,A1.Due_Date,A1.Cour_id FROM Assignment A1 JOIN Assigns A2 ON A1.Assig_ID=A2.Assig_ID AND A2.Appl_ID= Session["APPLICANT_ID"]  AND A2.Fac_ID= Fac_id
+     
+SELECT A1.Assig_id,A1.Assig_Title,A1.Complete_Status,A1.Due_time,A1.Due_Date,A1.Cour_id FROM Assignment A1 JOIN Assigns A2 ON A1.Assig_ID=A2.Assig_ID AND A2.Appl_ID= Session["APPLICANT_ID"]  AND A2.Fac_ID= Fac_id  AND A1.Complete_Status =0
+
+SELECT F.Fac_Name,F.Fac_id ,F.Fac_contact , F.Fac_Email ,TC.Cour_id ,TC.Sec_dept ,TC.Sec_Batch ,TC.Sec_alp ,TC.Start_time,TC.End_time FROM Applicants A JOIN Hire H ON A.Appl_ID = H.Appl_ID  JOIN Teaches_Course TC ON H.Fac_ID = TC.Fac_ID JOIN Apply_for AF ON A.Appl_ID = AF.Appl_ID AND TC.Cour_id = AF.Cour_ID AND TC.Sec_alp=AF.Sec_alp AND TC.Sec_Batch=AF.Sec_Batch AND TC.Sec_dept = AF.Sec_dept JOIN FACULTY F ON F.Fac_id=TC.Fac_ID WHERE A.Appl_ID = Session["APPLICANT_ID"]
+   
+SELECT A1.Assig_id,A1.Assig_Title,A1.Complete_Status,A1.Due_time,A1.Due_Date,A1.Cour_id FROM Assignment A1 JOIN Assigns A2 ON A1.Assig_ID=A2.Assig_ID AND A2.Appl_ID= Session["APPLICANT_ID"]  AND A2.Fac_ID= Fac_id;
+
+
+SELECT A1.Assig_id,A1.Assig_Title,A1.Complete_Status,A1.Due_time,A1.Due_Date,A1.Cour_id FROM Assignment A1 JOIN Assigns A2 ON A1.Assig_ID=A2.Assig_ID AND A2.Appl_ID= Session["APPLICANT_ID"]  AND A2.Fac_ID= Fac_id  AND A1.Complete_Status =1
+
+SELECT  R1.* FROM Responses R1 JOIN FeedBack F1 ON R1.Form_ID=F1.Form_ID AND F1.Appl_ID= Session["APPLICANT_ID"]
+
+SELECT A1.Appl_ID,A1.Appl_Name,Appl_Contact,A1.Appl_hire_status,A1.Appl_cgpa,A1.Appl_Email,A1.Appl_TA,A1.Appl_LD,A2.COUR_ID FROM APPLICANTS A1 JOIN Apply_for A2 ON A1.Appl_ID=A2.Appl_ID WHERE A1.Appl_ID IN(SELECT distinct Appl_ID FROM HIRE WHERE Fac_ID =Session["FACULTY_ID"] )
+
+
+SELECT A1.Assig_id,A1.Assig_Title,A1.Complete_Status,A1.Due_time,A1.Due_Date,A1.Cour_id FROM Assignment A1 JOIN COURSE C1 ON A1.Cour_ID=C1.C_id JOIN Teaches_Course T1 ON T1.Cour_id=C1.C_id WHERE T1.Fac_ID= Session["FACULTY_ID"]
+
+
+SELECT A1.Appl_ID,A1.Appl_Name,Appl_Contact,A1.Appl_hire_status,A1.Appl_cgpa,A1.Appl_Email,A1.Appl_TA,A1.Appl_LD,A2.COUR_ID FROM APPLICANTS A1 JOIN Apply_for A2 ON A1.Appl_ID=A2.Appl_ID WHERE A1.Appl_LD=1 AND A1.Appl_ID IN(SELECT Appl_ID FROM HIRE WHERE Fac_ID = Session["FACULTY_ID"]  and LD=1)
+
+SELECT A1.COUR_ID,A1.SEC_ALP,A1.SEC_BATCH,A1.SEC_DEPT FROM Apply_for A1 JOIN Teaches_Course T1 ON A1.Cour_ID=T1.Cour_id AND A1.Sec_alp=T1.Sec_alp AND A1.Sec_Batch=T1.Sec_Batch AND A1.Sec_dept=T1.Sec_dept WHERE A1.Appl_ID= APPL_ID AND T1.Fac_ID=Session["FACULTY_ID"]
+
+SELECT ASSIG_TITLE FROM ASSIGNMENT WHERE ASSIG_ID =  ASSI_ID  AND COUR_ID IN (SELECT COUR_ID FROM LEARNS_COURSE WHERE COUR_ID =  COUR_ID_Ass  AND SEC_DEPT =  SEC_DEPT  AND SEC_ALP =  SEC_ALP  AND SEC_BATCH =  SEC_BATCH )
+
+SELECT A1.*,A2.COUR_ID FROM APPLICANTS A1 JOIN Apply_for A2 ON A1.Appl_ID=A2.Appl_ID WHERE A1.Appl_TA=1 AND A1.Appl_ID IN(SELECT Appl_ID FROM HIRE WHERE Fac_ID = 10301 and TA=1);
+
+
+SELECT A1.*,A2.COUR_ID FROM APPLICANTS A1 JOIN Apply_for A2 ON A1.Appl_ID=A2.Appl_ID WHERE A1.Appl_TA=1 AND A1.Appl_ID IN(SELECT Appl_ID FROM HIRE WHERE Fac_ID = 10301);
+
+SELECT A1.COUR_ID,A1.SEC_ALP,A1.SEC_BATCH,A1.SEC_DEPT FROM Apply_for A1 JOIN Teaches_Course T1 ON A1.Cour_ID=T1.Cour_id AND A1.Sec_alp=T1.Sec_alp AND A1.Sec_Batch=T1.Sec_Batch AND A1.Sec_dept=T1.Sec_dept WHERE A1.Appl_ID= APPL_ID AND T1.Fac_ID="Session["FACULTY_ID"]
+
+SELECT ASSIG_TITLE FROM ASSIGNMENT WHERE ASSIG_ID =  ASSI_ID  AND COUR_ID IN (SELECT COUR_ID FROM LEARNS_COURSE WHERE COUR_ID =  COUR_ID_Ass  AND SEC_DEPT =  SEC_DEPT  AND SEC_ALP =  SEC_ALP  AND SEC_BATCH =  SEC_BATCH )
+
+SELECT A1.Appl_ID,A1.Appl_Name,Appl_Contact,A1.Appl_hire_status,A1.Appl_cgpa,A1.Appl_Email,A1.Appl_TA,A1.Appl_LD,A2.COUR_ID FROM APPLICANTS A1 JOIN Apply_for A2 ON A1.Appl_ID=A2.Appl_ID WHERE A1.Appl_TA=1 AND A1.Appl_ID IN(SELECT Appl_ID FROM HIRE WHERE Fac_ID = Session["FACULTY_ID"]  and TA=1)
+
+SELECT A1.Assig_id,A1.Assig_Title,A1.Complete_Status,A1.Due_time,A1.Due_Date,A1.Cour_id FROM Assignment A1 JOIN COURSE C1 ON A1.Cour_ID=C1.C_id JOIN Teaches_Course T1 ON T1.Cour_id=C1.C_id WHERE T1.Fac_ID= Session["FACULTY_ID"]
+
+SELECT  A.Appl_ID, A.Appl_Name AS LDName,A.Appl_Contact,A.Appl_Email,AC.Assig_ID, ASG.Assig_Title,ASG.Complete_Status,ASG.Late FROM Faculty F JOIN Assigns AC ON F.Fac_ID = AC.Fac_ID JOIN Assignment ASG ON AC.Assig_ID = ASG.Assig_ID JOIN Applicants A ON AC.Appl_ID = A.Appl_ID WHERE A.Appl_LD = 1 AND A.APPL_ID IN (SELECT DISTINCT APPL_ID FROM HIRE WHERE Fac_ID= Session["Faculty_ID"] and LD=1)
+
+SELECT  A.Appl_ID, A.Appl_Name AS LDName,A.Appl_Contact,A.Appl_Email,AC.Assig_ID, ASG.Assig_Title,ASG.Complete_Status,ASG.Late FROM Faculty F JOIN Assigns AC ON F.Fac_ID = AC.Fac_ID JOIN Assignment ASG ON AC.Assig_ID = ASG.Assig_ID JOIN Applicants A ON AC.Appl_ID = A.Appl_ID WHERE A.Appl_TA = 1 AND A.APPL_ID IN (SELECT DISTINCT APPL_ID FROM HIRE WHERE Fac_ID= Session["Faculty_ID"] and TA=1)
+
+
+
+
+            
